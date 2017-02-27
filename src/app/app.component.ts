@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from "@angular/core";
+import { ToastsManager } from "ng2-toastr";
+import { RecipeService } from "./recipes/recipe.service";
 
 @Component({
-  selector: 'rb-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
+               selector: 'rb-root',
+               templateUrl: './app.component.html',
+           })
 export class AppComponent {
-  title = 'rb works!';
+    constructor(public toastr: ToastsManager, vRef: ViewContainerRef, recipeService: RecipeService) {
+        toastr.setRootViewContainerRef(vRef);
+        recipeService.fetchData();
+    }
+
+
 }
